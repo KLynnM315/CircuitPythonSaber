@@ -17,14 +17,12 @@ blade_on = False
 
 while True:
 
-    # Press the buttons to play sounds!
+    # Saber ON/OFF button
     if cpx.button_a:
 
         if blade_on == False:
 
-            color_index = 1
-
-            #cpx.pixels.fill(saber_colors[color_index])
+            color_index = 1 # Default to the blue saber
 
             cpx.pixels[9] = saber_colors[color_index]
             cpx.pixels[0] = saber_colors[color_index]
@@ -57,13 +55,15 @@ while True:
 
         else:
 
+            #Turn the blade off.
             blade_on = False
-
+            
             color_index = 0
 
             cpx.pixels.fill( saber_colors[color_index] )
             cpx.pixels.show()
 
+    #Change saber color button
     elif cpx.button_b:
 
         if color_index < (len(saber_colors) - 1):
@@ -79,6 +79,7 @@ while True:
     if cpx.shake(20) and blade_on:
         cpx.play_file("saber_swing.wav")
     
+    #Driod SOUNDS :} when the blade is turned off
     cpx.detect_taps = 2
     if cpx.tapped and blade_on == False:
         cpx.play_file("happy_three_chirp.wav")
